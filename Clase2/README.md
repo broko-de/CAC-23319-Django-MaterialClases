@@ -1,14 +1,14 @@
-#APUNTES DE GIT
-###QUE ES GIT?
+# APUNTES DE GIT
+### QUE ES GIT?
 Git es un sistema de control de versiones distribuido, diseñado por Linus  Torvalds. Está pensando en la eficiencia y la confiabilidad del mantenimiento de versiones de aplicaciones cuando estas tienen un gran número de archivos de código fuente. Git está optimizado para guardar todos estos cambios de forma atómica e incremental.
 
-###QUE ES UN SISTEMA DE CONTROL DE VERSIONES
+### QUE ES UN SISTEMA DE CONTROL DE VERSIONES
 Es un sistema que registra los cambios realizados sobre un archivo o conjunto de archivos a lo largo del tiempo, de modo que puedas llevar el historial del ciclo de vida de un proyecto. Cualquier tipo de archivo que se encuentre en un ordenador puede ponerse bajo control de versiones.
 
-###QUE ES GITHUB?
+### QUE ES GITHUB?
 Es una plataforma de desarrollo colaborativo para alojar proyectos utilizando el sistema de control de versiones Git. Se emplea principalmente para la creación de código fuente de programas de computadora. Github puede considerarse como la red social de código para los programadores y en muchos casos es visto como tu curriculum vitae, pues aquí guardas tu portafolio de proyectos de programación.
 
-###INSTALACION
+### INSTALACION
 - Asegurarse que este seleccionado GIT BASH
 - Luego podemos editar el editor texto visual de código
 - Elegir como llamar la rama inicial de un repositorio
@@ -24,7 +24,7 @@ Es una plataforma de desarrollo colaborativo para alojar proyectos utilizando el
 - Podemos habilitar el enlaces simbólicos de linux en windows.
 File sistema caching hacer que todo corra más rápidos por se guardar en cache del sistema
 
-###COMANDOS LINUX 
+### COMANDOS LINUX 
 (estructura de archivos en windows y linux son distintas en windows mayuscula y minuscula son indistintas, pero en linux/max no)
 
 - pwd: Nos muestra la ruta de carpetas en la que te encuentras ahora mismo.
@@ -44,8 +44,8 @@ File sistema caching hacer que todo corra más rápidos por se guardar en cache 
 - history: Ver los últimos comandos que ejecutamos y un número especial con el que podemos repetir su ejecución.
 - clear: Para limpiar la terminal. También podemos usar los atajos de teclado Ctrl + L o Command + L.
 
-###COMANDO BASICOS GIT
-####Creación y gestión del repositorio
+### COMANDO BASICOS GIT
+#### Creación y gestión del repositorio
 **git init** - inicialización el proyecto
 **git status** - para ver el estado del repositorio
 **git add (arhivo)** - Agregamos archivos al área de staging
@@ -66,19 +66,19 @@ File sistema caching hacer que todo corra más rápidos por se guardar en cache 
 **git config --global user.name 'Nombre'** - configuramos nombre
 
 
-####VOLVER EN EL TIEMPO CON GIT
-**GIT RESET IDCOMMIT --hard** - nos permite volver a una versión anterior, todo vuelve
+#### VOLVER EN EL TIEMPO CON GIT
+**git reset IDCOMMIT --hard** - nos permite volver a una versión anterior, todo vuelve
 al estado anterior, es el más peligroso pero que más se usa. Volvemos de una manera agresiva
-**GIT RESET IDCOMMIT --soft** - volvemos a la versión anterior pero si tenemos cosas en staging eso queda ahi para el próximo commit. hacer GIT LOG para ver las diferencias. Hago un cambio subo con add y luego el reset soft y luego commit 
-**GIT RESET HEAD ARCHIVO** - Si queremos sacar un archivo de staging para poder hacer commit porque lo agregamos por accidente.
+**git reset IDCOMMIT --soft** - volvemos a la versión anterior pero si tenemos cosas en staging eso queda ahi para el próximo commit. hacer GIT LOG para ver las diferencias. Hago un cambio subo con add y luego el reset soft y luego commit 
+**git reset HEAD ARCHIVO** - Si queremos sacar un archivo de staging para poder hacer commit porque lo agregamos por accidente.
 
 Recordar que el comando RESET PISA AL REPOSITORIO
 
-**GIT CHECKOUT IDCOMMIT** (o bien nombre de rama) ARCHIVO nos permite viajar en el tiempo y volver a la versión anterior de un archivo especifico o el proyecto entero. También es la 
+**git checkout IDCOMMIT** (o bien nombre de rama) ARCHIVO nos permite viajar en el tiempo y volver a la versión anterior de un archivo especifico o el proyecto entero. También es la 
 forma de movernos entre ramas.
 CHECKOUT NO PISA AL REPOSITORIO solo el contenido.
 
-####RAMAS EN GIT
+#### RAMAS EN GIT
 Cuando hacemos una rama lo que hacemos es hacernos una copia del HEAD de master y creamos una nueva línea de trabajo. Los cambios que hagamos en la rama no serán vistos por la rama master hasta que no la volvamos a fusionar con un merge.
 
 **git branch** - listamos ramas del repositorio
@@ -89,4 +89,10 @@ Para hacer el merge vamos a hacer modificaciones en develop, luego nos vemos a m
 
 **GIT MERGE nombre rama **- traemos el contenido de develop y hacemos una fusión
 automáticamente hace un commit.
+
+Para descargar una rama especifica del repositorio en GitHub que no esta en nuestro repositorio local, debemos hacer lo siguiente:
+**git branch --all** - listamos todas las ramas, tanto remota como local
+Nos aseguramos que se visualice la rama en el repositorio remoto de GitHub que queremos descargar, por ej: remotes/origin/develop. Luego hacemos un checkout a la rama
+**git checkout nombre_rama** - Cambiamos la rama
+**git pull origin nombre_rama** - Descargamos desde el repositorio remoto la rama seleccionada
 
