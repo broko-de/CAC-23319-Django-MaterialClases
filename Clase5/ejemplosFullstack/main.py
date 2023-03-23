@@ -5,7 +5,7 @@ from herencia.subclase import Alimento, Adorno, Libro
 from polimorfismo.persona import Persona
 from polimorfismo.subclases import Programador, Contador
 
-from abstractas.abstracta import Animal
+from abstractas.abstracta import Animal, decir_algo
 from abstractas.subclases import Perro, Gato
 
 from herenciamultiple.spideruno import SpiderUno
@@ -77,3 +77,4 @@ def main():
     
 if __name__ == "__main__":
     main()
+    decir_algo()
