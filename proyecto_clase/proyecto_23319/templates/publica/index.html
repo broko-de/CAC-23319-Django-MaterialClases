@@ -4,12 +4,27 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test</title>
+    <title>Test</title>    
 </head>
 <body>
     <main>
-        <h1>Template de Django 🦄</h1>
+        <h1 class='algo'>{{ titulo }}</h1>
         <p>test test</p>
+        <p>{{ parametro_uno|default:"NO RECIBI NADA" }}</p>
+        <p>{{ hoy|date:'d-m-Y' }}</p>
+        {% if cursos|length > 0 %}
+            <ul>
+                {% for curso in cursos  %}
+                    <li>
+                        {{ curso.nombre }} - {{ curso.categoria}}
+                        <p>{{ curso.descripcion }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No hay cursos disponibles</p>
+        {% endif %}
+        
     </main>
 </body>
 </html>

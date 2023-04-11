@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
+from datetime import datetime
+
 # Create your views here.
 def hola_mundo(request):
     return HttpResponse('Hola Mundo Django 🦄')
@@ -12,7 +14,35 @@ def index(request):
         titulo = 'Titulo cuando accedo por otro metodo'
     parametro_uno = request.GET.get('param')
     parametro_dos = request.GET.get('param2')
-    return render(request,'publica/index.html')
+    listado_cursos = [
+        {
+            'nombre':'Fullstack Java',
+            'descripcion':'Curso de Fullstack',
+            'categoria':'Programación',
+        },
+        {
+            'nombre':'Diseño UX/UI',
+            'descripcion':'🖌🎨',
+            'categoria':'Diseño',
+        },
+        {
+            'nombre':'Big Data',
+            'descripcion':'test',
+            'categoria':'Análisis de Datos',
+        },
+        {
+            'nombre':'Big Data Avanzado',
+            'descripcion':'test',
+            'categoria':'Análisis de Datos',
+        },
+    ]
+
+    context = {'titulo':titulo,
+                'parametro_uno':parametro_uno,
+                'hoy':datetime.now(),
+                'cursos':listado_cursos
+            }
+    return render(request,'publica/index.html',context)
     # return HttpResponse(f"""<h1>PROYECTO DJANGO - CODO A CODO</h1>
     #             <p>{titulo}</p>   
     #             <p>Param recibido: {parametro_uno}</p>                
