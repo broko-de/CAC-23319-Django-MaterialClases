@@ -1,13 +1,49 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.template import loader
 
 from datetime import datetime
 
 # Create your views here.
+def index(request):    
+    listado_cursos = [
+        {
+            'nombre':'Fullstack Java',
+            'descripcion':'Curso de Fullstack',
+            'categoria':'Programación',
+        },
+        {
+            'nombre':'Diseño UX/UI',
+            'descripcion':'🖌🎨',
+            'categoria':'Diseño',
+        },
+        {
+            'nombre':'Big Data',
+            'descripcion':'test',
+            'categoria':'Análisis de Datos',
+        },
+        {
+            'nombre':'Big Data Avanzado',
+            'descripcion':'test',
+            'categoria':'Análisis de Datos',
+        },
+    ]
+
+    context = {                
+                'cursos':listado_cursos
+            }
+    return render(request,'publica/index.html',context)
+
+def quienes_somos(request):
+    template = loader.get_template('publica/quienes_somos.html')
+    context = {'titulo':'Codo A Codo - Quienes Somos'}
+    return HttpResponse(template.render(context,request))
+
+#NO USAR
 def hola_mundo(request):
     return HttpResponse('Hola Mundo Django 🦄')
 
-def index(request):
+def index_old(request):
     if(request.method=='GET'):
         titulo = 'Titulo cuando accedo por GET'
     else:

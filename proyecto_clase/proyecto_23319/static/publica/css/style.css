@@ -1,0 +1,82 @@
+.banner{
+    /* background-image: url('https://www.buenosaires.gob.ar/sites/gcaba/files/codo_a_codo4.jpg');
+    background-size: cover; */
+    background: #1d1c1a;
+}
+
+.h1-banner, .text-banner{
+    color:#FFF
+}
+
+.banner-proyectos{
+    background-image: url('https://agenciadeaprendizaje.bue.edu.ar/wp-content/uploads/2021/04/Banner-Codo-scaled.jpg?id=20937');
+    background-size: cover;
+}
+
+footer{
+    background-color: #333;
+}
+footer a{
+    color: #FFF;
+}
+img.logo-ciudad {
+    max-width: none !important;
+    width: 230px;
+}
+
+p.legales {
+    margin: 12px 0 0 0;
+    font-family: 'OpenSans', Helvetica, sans-serif;
+    font-size: 12px;
+    color: #AAAAAA;
+    line-height: 1.5;
+}
+
+p.legales {
+    margin: 12px 0 0 0;
+    font-family: 'OpenSans', Helvetica, sans-serif;
+    font-size: 12px;
+    color: #AAAAAA;
+    line-height: 1.5;
+}
+
+ul.lista-institucional {
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    padding-left: 64px;
+    list-style: none;
+}
+
+.error{
+    color: red;
+    font-size: 12px;
+}
+
+.container-de {
+    background-color: #1d1c1a;
+}
+
+.container-iz {
+    background-color: #1d1c1a;
+    color: white;
+}
+
+.container-de img {
+    width: 70%;
+}
+
+.container-iz p:first-child {
+    font-weight: bold;
+    font-size: 40px;
+}
+
+.container-iz p {
+    width: 60%;
+    font-size: 35px;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    margin-left: 1em;
+    line-height: 1.5em;
+}
