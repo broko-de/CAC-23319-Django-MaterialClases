@@ -1,0 +1,40 @@
+{% extends './base.html' %}
+
+{% block titulo %}Cursos y carreras{% endblock%}
+
+{% block contenido %}
+<section class="album py-5 bg-light">
+    <div class="container">
+
+        <!--Section heading-->
+        <h2 class="h1-responsive font-weight-bold text-center my-4">Nuestros cursos</h2>
+        <!--Section description-->
+        <p class="text-center w-responsive mx-auto mb-5">Preparamos a los estudiantes para la demanda de las empresas
+            más
+            innovadoras del área de programación.</p>
+
+
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
+            {% for curso in cursos %}
+            <div class="col">
+                <div class="card shadow-sm">
+                    <img class="bd-placeholder-img card-img-top" width="100%" src="{{curso.portada.url}}"
+                        alt="{{curso.nombre}}" width="20%">
+                    <div class="card-body">
+                        <h3>{{curso.nombre}}</h3>
+                        <p class="card-text">{{curso.descripcion}}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-sm btn-outline-secondary">Ver</button>
+                            </div>
+                            <small class="text-muted">{{curso.categoria.nombre}}</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<br><br><br><br><br><br><br>
+{% endblock %}

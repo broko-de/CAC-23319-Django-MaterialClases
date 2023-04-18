@@ -1,165 +1,121 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio CAC</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+{% extends './base.html' %}
 
-    <script src="https://kit.fontawesome.com/3682b977b2.js" crossorigin="anonymous"></script>
+{% block titulo %}Inicio CAC{% endblock titulo %}
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+{% block contenido %}
+    <section class="py-5 text-center banner">
+        <div class="row py-lg-5">
 
-    
-    {% load static %}
-    <link rel="stylesheet" href="{% static '/publica/css/style.css'%}?v={% now 'U' %}">    
-
-</head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-warning fixed-top" aria-label="Tenth navbar example">
-            <div class="container">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample08"
-                aria-controls="navbarsExample08" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <!-- comentario html -->
-            <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample08">
-                <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
-                    <img src="{% static '/img/logocodoacodo.png'%}" alt="">
-                </a>
-                <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-                    <li><a href="{% url 'inicio' %}" class="nav-link px-2 link-secondary">Inicio</a></li>
-                    <li><a href="{% url 'inicio' %}" class="nav-link px-2 link-dark">Cursos y Carreras</a></li>
-                    <li><a href="{% url 'inicio' %}" class="nav-link px-2 link-dark">Proyectos</a></li>
-                    <li><a href="{% url 'inicio' %}" class="nav-link px-2 link-dark">Nosotros</a></li>
-                    
-                </ul>
-                <div class="col-md-3 text-end">
-                    <a type="button" href="" class="btn btn-outline-primary me-2">Iniciar Sesión</a>
-                    <a type="button" href="" class="btn btn-dark">Registrarse</a>
+            <div class="col-lg-6 col-md-8 mx-auto">
+                <div class="container-iz">
+                    <p>¡Bienvenidos/as!</p>
+                    <p>Mira los cursos que tenemos para vos. <br> Aca empieza tu carrera al futuro.</p>
                 </div>
             </div>
-            </div>
-        </nav>
-    </header>
-    <main class="flex-shrink-0">
-        <section class="py-5 text-center banner">
-            <div class="row py-lg-5">
-    
-                <div class="col-lg-6 col-md-8 mx-auto">
-                    <div class="container-iz">
-                        <p>¡Bienvenidos/as!</p>
-                        <p>Mira los cursos que tenemos para vos. <br> Aca empieza tu carrera al futuro.</p>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-8 mx-auto">
-                    <div class="container-de">
-                        <img src="https://inscripcionesagencia.bue.edu.ar/codoacodo/iconos/logos/logo-CAC.webp" alt="">
-                    </div>
+            <div class="col-lg-6 col-md-8 mx-auto">
+                <div class="container-de">
+                    <img src="https://inscripcionesagencia.bue.edu.ar/codoacodo/iconos/logos/logo-CAC.webp" alt="">
                 </div>
             </div>
-        </section>
-        <section class="album py-5 bg-light">
-            <div class="container">
-            <!--Section heading-->
-            <h2 class="h1-responsive font-weight-bold text-center my-4">Nuestros cursos</h2>
-            <!--Section description-->
-            <p class="text-center w-responsive mx-auto mb-5">Preparamos a los estudiantes para la demanda de las empresas más
-                innovadoras del área de programación.</p>
-                    {% if cursos|length > 0 %}
-                        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
-                            {% for curso in cursos %}
-                                <div class="col">
-                                    <div class="card shadow-sm">
-                                        <img class="bd-placeholder-img card-img-top" width="100%" src="https://picsum.photos/id/{{ forloop.counter|add:500 }}/300/200" alt="{{curso.nombre}}"
-                                        width="20%">
-                                        <div class="card-body">
-                                            <h3>{{curso.nombre}}</h3>
-                                            <p class="card-text">{{curso.descripcion}}</p>
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <div class="btn-group">
-                                                    <button type="button" class="btn btn-sm btn-outline-secondary">Ver</button>
-                                                </div>
-                                                <small class="text-muted">{{curso.categoria}}</small>
+        </div>
+    </section>
+    <section class="album py-5 bg-light">
+        <div class="container">
+        <!--Section heading-->
+        <h2 class="h1-responsive font-weight-bold text-center my-4">Nuestros cursos</h2>
+        <!--Section description-->
+        <p class="text-center w-responsive mx-auto mb-5">Preparamos a los estudiantes para la demanda de las empresas más
+            innovadoras del área de programación.</p>
+                {% if cursos|length > 0 %}
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
+                        {% for curso in cursos %}
+                            <div class="col">
+                                <div class="card shadow-sm">
+                                    <img class="bd-placeholder-img card-img-top" width="100%" src="https://picsum.photos/id/{{ forloop.counter|add:500 }}/300/200" alt="{{curso.nombre}}"
+                                    width="20%">
+                                    <div class="card-body">
+                                        <h3>{{curso.nombre}}</h3>
+                                        <p class="card-text">{{curso.descripcion}}</p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-sm btn-outline-secondary">Ver</button>
                                             </div>
+                                            <small class="text-muted">{{curso.categoria}}</small>
                                         </div>
                                     </div>
                                 </div>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        <div class="row justify-content-center">
-                            <div class="col-4 text-center">
-                                <div class="alert alert-warning" role="alert">
-                                    <p>No hay cursos disponibles</p>
-                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div class="row justify-content-center">
+                        <div class="col-4 text-center">
+                            <div class="alert alert-warning" role="alert">
+                                <p>No hay cursos disponibles</p>
                             </div>
                         </div>
-                    {% endif %}
-                </div>
-    
+                    </div>
+                {% endif %}
             </div>
-        </section>
-        <section class="mb-4 container">
-    
-            <!--Section heading-->
-            <h2 class="h1-responsive font-weight-bold text-center my-4">Contactanos</h2>
-            <!--Section description-->
-            <p class="text-center w-responsive mx-auto mb-5">¿Tiénes alguna pregunta? Por favor, no dudes en contactarnos
-            directamente. Nuestro equipo le responderá dentro de cuestión de horas para ayudarte.</p>
-        
-            <div class="row">
-        
-            <!--Grid column-->
-                <div class="col-md-6 mb-md-0 mb-6">
+
+        </div>
+    </section>
+    <section class="mb-4 container">
+
+        <!--Section heading-->
+        <h2 class="h1-responsive font-weight-bold text-center my-4">Contactanos</h2>
+        <!--Section description-->
+        <p class="text-center w-responsive mx-auto mb-5">¿Tiénes alguna pregunta? Por favor, no dudes en contactarnos
+        directamente. Nuestro equipo le responderá dentro de cuestión de horas para ayudarte.</p>
+
+        <div class="row">
+
+        <!--Grid column-->
+            <div class="col-md-6 mb-md-0 mb-6">
+                
+                {% if mensaje %}
+                    <div class="alert alert-success" role="alert">
+                        {{mensaje}}
+                    </div>
+                {% endif %}
+                <form id="contact-form" name="contact-form" action="{% url 'inicio' %}" method="POST">
+                    {% csrf_token %}
+                    {% comment %} {{ contacto_form }} {% endcomment %}
                     
-                    <form novalidate id="contact-form" name="contact-form" action="{% url 'inicio' %}" method="POST">
-                        
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="md-form mb-0">
-                                    <label for="">Nombre</label>
-                                    <input type="nombre">
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="text-center text-md-left mt-3">
-                            <button class="btn btn-primary" type="submit">Enviar</button>
-                        </div>
-                    </form>
-                    <div class="status"></div>
-                </div>
-            <!--Grid column-->
-        
-                <!--Grid column-->
-                <div class="col-md-6 text-center">
-                    <ul class="list-unstyled mb-0">
-                    <li><i class="fas fa-map-marker-alt fa-2x"></i>
-                        <p>Carlos H Perette y Calle 10, 5to piso</p>
-                    </li>
-            
-                    <li><i class="fas fa-phone mt-4 fa-2x"></i>
-                        <p>6076-6000 Int. 5046 y 5041</p>
-                    </li>
-            
-                    <li><i class="fas fa-envelope mt-4 fa-2x"></i>
-                        <p>io.codoacodo@bue.edu.ar</p>
-                    </li>
-                    </ul>
-                </div>
-                <!--Grid column-->
+                    {% comment %} <table>
+                        {{ contacto_form.as_table }}
+                    </table> {% endcomment %}
+
+                    {% comment %} <ul>
+                        {{ contacto_form.as_ul }}
+                    </ul> {% endcomment %}
+
+                    {{ contacto_form.as_p }}
+                    <div class="text-center text-md-left mt-3">
+                        <button class="btn btn-primary" type="submit">Enviar</button>
+                    </div>
+                </form>
+                <div class="status"></div>
             </div>
-        </section>
-    </main>    
-    {% include './footer.html' %}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
-    crossorigin="anonymous"></script>    
-</body>
-</html>
+        <!--Grid column-->
+
+            <!--Grid column-->
+            <div class="col-md-6 text-center">
+                <ul class="list-unstyled mb-0">
+                <li><i class="fas fa-map-marker-alt fa-2x"></i>
+                    <p>Carlos H Perette y Calle 10, 5to piso</p>
+                </li>
+        
+                <li><i class="fas fa-phone mt-4 fa-2x"></i>
+                    <p>6076-6000 Int. 5046 y 5041</p>
+                </li>
+        
+                <li><i class="fas fa-envelope mt-4 fa-2x"></i>
+                    <p>io.codoacodo@bue.edu.ar</p>
+                </li>
+                </ul>
+            </div>
+            <!--Grid column-->
+        </div>
+    </section>
+{% endblock contenido %}

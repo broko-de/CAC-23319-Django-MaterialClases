@@ -1,0 +1,28 @@
+{% extends './base.html' %}
+
+{% block titulo %}Proyectos{% endblock%}
+
+{% block contenido %}
+
+<section class="py-5 text-center banner-proyectos">
+    <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto pt-4">
+            <h1 class="fw-bold h1-banner">Galería de proyectos de egresados/as del Programa</h1>
+            <p class="lead text-banner">Los invitamos a conocer algunos de los proyectos que han realizado nuestros/as
+                egresados/as poniendo en práctica lo aprendido durante el curso</p>
+        </div>
+    </div>
+</section>
+<section class="album py-5 bg-light">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3 text-center justify-content-center" id="divProyectos">
+            
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block javascript %}
+{% load static %}
+<script src="{% static '/publica/js/proyectos.js'%}?v={% now 'U' %}"></script>
+{% endblock %}
