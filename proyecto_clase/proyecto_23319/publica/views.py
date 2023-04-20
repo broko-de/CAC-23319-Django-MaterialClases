@@ -10,7 +10,7 @@ from datetime import datetime
 def index(request):    
     mensaje=None
     if(request.method=='POST'):
-        contacto_form = ContactoForm(request.POST)
+        contacto_form = ContactoForm(request.POST)    
         mensaje='Hemos recibido tus datos'
         # acción para tomar los datos del formulario
     else:
@@ -75,7 +75,7 @@ def ver_cursos(request):
     ]
     return render(request,'publica/cursos.html',{'cursos':listado_cursos})
 
-def api_proyectos(request,):
+def api_proyectos(request):
     proyectos = [{
         'autor': 'Gustavo Villegas',
         'portada': 'https://agenciadeaprendizaje.bue.edu.ar/wp-content/uploads/2021/12/Gustavo-Martin-Villegas-300x170.png',

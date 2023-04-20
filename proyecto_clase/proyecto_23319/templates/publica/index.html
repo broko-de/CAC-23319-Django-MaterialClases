@@ -78,7 +78,7 @@
                         {{mensaje}}
                     </div>
                 {% endif %}
-                <form id="contact-form" name="contact-form" action="{% url 'inicio' %}" method="POST">
+                <form id="contact-form" name="contact-form" action="{% url 'inicio' %}" method="POST" novalidate>
                     {% csrf_token %}
                     {% comment %} {{ contacto_form }} {% endcomment %}
                     
