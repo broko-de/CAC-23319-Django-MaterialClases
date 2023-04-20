@@ -5,14 +5,20 @@ from django.template import loader
 from publica.forms import ContactoForm
 
 from datetime import datetime
+from django.contrib import messages
 
 # Create your views here.
 def index(request):    
-    mensaje=None
+    # mensaje=None
     if(request.method=='POST'):
         contacto_form = ContactoForm(request.POST)    
-        mensaje='Hemos recibido tus datos'
+        # mensaje='Hemos recibido tus datos'
         # acción para tomar los datos del formulario
+        if(contacto_form.is_valid()):  
+            messages.success(request,'Hemos recibido tus datos')          
+        # acción para tomar los datos del formulario
+        else:
+            messages.warning(request,'Por favor revisa los errores en el formulario')
     else:
         contacto_form = ContactoForm()
     listado_cursos = [
@@ -39,8 +45,7 @@ def index(request):
     ]
 
     context = {                
-                'cursos':listado_cursos,
-                'mensaje':mensaje,
+                'cursos':listado_cursos,                
                 'contacto_form':contacto_form
             }
     return render(request,'publica/index.html',context)
