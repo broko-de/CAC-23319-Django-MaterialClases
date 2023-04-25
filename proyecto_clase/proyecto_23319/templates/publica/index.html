@@ -96,9 +96,10 @@
                             <!--Grid column-->
                             <div class="col-md-12">
                                 <div class="md-form mb-0">
-                                    <label for="name" class="">{{ campo.label }}</label>
+                                    <label for="name" class="form-label">{{ campo.label }}</label>
                                     {{campo}}
-                                    {% comment %} {% if campo.field.widget.input_type == 'checkbox' %}
+                                    {% comment %} 
+                                    {% if campo.field.widget.input_type == 'checkbox' %}
                                         {{campo}} 
                                         <label for="name" class="">{{ campo.label }}</label>
                                     {% else %}
@@ -106,7 +107,7 @@
                                         {{campo}}
                                     {% endif %} {% endcomment %}
                                 </div>
-                                <div>{{campo.errors}}</div>
+                                <div >{{campo.errors}}</div>
                             </div>
                             <!--Grid column-->
                         {% endfor %}

@@ -1,12 +1,19 @@
 from django import forms
 from django.forms import ValidationError
+import re
 
 def solo_caracteres(value):
     if any(char.isdigit() for char in value):
         raise ValidationError('El nombre no puede contener números. %(valor)s',
                             code='Invalid',
                             params={'valor':value})
-    
+
+def validate_email(value):
+    email_regex = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+    if not re.match(email_regex, value):
+        raise ValidationError('Correo electrónico inválido')
+    return value
+ 
 # class ContactoForm(forms.Form):
 #     TIPO_CONSULTA = (
 #         ('','-Seleccione-'),
@@ -41,11 +48,16 @@ class ContactoForm(forms.Form):
             label='Nombre', 
             max_length=50,
             validators=(solo_caracteres,),
-            widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Solo letras'})
+            widget=forms.TextInput(
+                    attrs={'class':'form-control',
+                        'placeholder':'Solo letras'}
+                    )
         )
     email = forms.EmailField(
             label='Email',
             max_length=100,
+            required=False,
+            validators=(validate_email,),
             error_messages={
                     'required': 'Por favor completa el campo'
                 },
@@ -64,7 +76,6 @@ class ContactoForm(forms.Form):
     tipo_consulta = forms.ChoiceField(
         label='Tipo de consulta',
         choices=TIPO_CONSULTA,
-        initial='2',
         widget=forms.Select(attrs={'class':'form-control'})
     )
     suscripcion = forms.BooleanField(
