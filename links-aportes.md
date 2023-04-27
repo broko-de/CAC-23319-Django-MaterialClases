@@ -13,3 +13,5 @@ https://www.djangoproject.com/download/#supported-versions
 https://docs.djangoproject.com/en/dev/faq/install/#what-python-version-can-i-use-with-django
 
 Gitignore IO: https://docs.gitignore.io/
+
+Diagramas entidad relacion: https://www.lucidchart.com/pages/es/simbolos-de-diagramas-entidad-relacion
