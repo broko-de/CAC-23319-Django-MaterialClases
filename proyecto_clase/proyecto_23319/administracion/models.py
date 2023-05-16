@@ -121,9 +121,9 @@ class Inscripcion(models.Model):
         return self.estudiante.nombre
     
 
-    class Perfil(models.Model):
-        """MODELO QUE PERMITE DEL USER MODEL DE DJANGO PARA AGREGERLE CAMPOS EXTRAS"""
-        user = models.OneToOneField(User, on_delete=models.CASCADE)
-        telefono = models.CharField(max_length=20,verbose_name='Teléfono')
-        domicilio = models.CharField(max_length=20,verbose_name='Domicilio')
-        foto = models.ImageField(upload_to='perfiles/',null=True,verbose_name='Foto Perfil')
+class Perfil(models.Model):
+    """MODELO QUE PERMITE DEL USER MODEL DE DJANGO PARA AGREGERLE CAMPOS EXTRAS"""
+    user = models.OneToOneField(User, on_delete=models.CASCADE,primary_key=True)
+    telefono = models.CharField(max_length=20,verbose_name='Teléfono')
+    domicilio = models.CharField(max_length=20,verbose_name='Domicilio')
+    foto = models.ImageField(upload_to='perfiles/',null=True,verbose_name='Foto Perfil')

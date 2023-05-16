@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 
 from administracion.forms import CategoriaForm
 
-from administracion.models import Categoria
+from administracion.models import Categoria, Curso
 
 # Create your views here.
 def index_administracion(request):
@@ -49,3 +49,4 @@ def categorias_eliminar(request,id_categoria):
         return render(request,'administracion/404_admin.html')
     categoria.soft_delete()
     return redirect('categorias_index')
+    
