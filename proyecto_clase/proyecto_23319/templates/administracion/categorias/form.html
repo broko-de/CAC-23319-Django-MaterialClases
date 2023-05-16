@@ -1,0 +1,21 @@
+{% for campo in formulario %}
+    <div class="form-group">
+        <label for="">{{campo.label}}</label>
+        {% comment %} <input 
+            type="{{campo.field.widget.input_type}}" 
+            name="{{campo.name}}" 
+            id="{{campo.name}}"
+            class="form-control"
+            placeholder="Ingrese {{campo.name}}"
+            value="{{ campo.value | default:'' }}"
+        > {% endcomment %}
+        {{campo}}
+    </div>
+    <div>{{campo.errors}}</div>
+{% endfor %}
+<div class="row mt-3">
+    <div class="col-12">
+        <input type="submit" value="Guardar" class="btn btn-success">
+        <a href="{% url 'categorias_index' %}" class="btn btn-secondary">Cancelar</a>        
+    </div>
+</div>

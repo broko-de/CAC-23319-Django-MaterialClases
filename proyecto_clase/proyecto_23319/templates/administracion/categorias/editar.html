@@ -1,0 +1,21 @@
+{% extends '../base_administracion.html' %}
+
+{% block titulo %}Editar categria{% endblock%}
+
+{% block contenido %}
+<h1 class="mt-4">Categorias cursos</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item"><a href="{% url 'inicio_administracion' %}">Administracion</a></li>
+    <li class="breadcrumb-item active">Editar Categoria</li>
+</ol>
+
+<div class="card">
+    <div class="card-header">Edicion de categoria</div>
+    <div class="card-body">
+        <form action="" method="post">
+            {% csrf_token %}
+            {% include 'administracion/categorias/form.html' %}
+        </form>
+    </div>
+</div>
+{% endblock %}
