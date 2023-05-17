@@ -1,0 +1,23 @@
+{% extends '../base_administracion.html' %}
+
+{% block titulo %}Eliminar categoria{% endblock%}
+
+{% block contenido %}
+<h1 class="mt-4">Categorias cursos</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item"><a href="{% url 'inicio_administracion' %}">Administracion</a></li>
+    <li class="breadcrumb-item active">Eliminar Categoriaa</li>
+</ol>
+
+
+<div class="card">
+    <div class="card-header">Eliminacion de categoría</div>
+    <div class="card-body">
+        <form method="post">{% csrf_token %}
+            <p>Esta seguro que quiere eliminar la categoria "{{ object.nombre }}"?</p>
+            <input type="submit" value="Confirmar" class="btn btn-danger">
+        </form>
+        
+    </div>
+</div>
+{% endblock %}
