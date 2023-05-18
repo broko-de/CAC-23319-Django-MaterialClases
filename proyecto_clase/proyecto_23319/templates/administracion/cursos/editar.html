@@ -1,0 +1,22 @@
+{% extends '../base_administracion.html' %}
+
+{% block titulo %}Editar curso{% endblock%}
+
+{% block contenido %}
+<h1 class="mt-4">Cursos CAC</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item"><a href="{% url 'inicio_administracion' %}">Administracion</a></li>
+    <li class="breadcrumb-item active">Editar Curso</li>
+</ol>
+
+<div class="card">
+    <div class="card-header">Edicion de curso</div>
+    <div class="card-body">
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% include 'administracion/cursos/form.html' %}
+        </form>
+        
+    </div>
+</div>
+{% endblock %}

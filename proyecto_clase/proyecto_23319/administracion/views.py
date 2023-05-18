@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 
-from administracion.forms import CategoriaForm
+from administracion.forms import CategoriaForm, CursoForm
 
 from administracion.models import Categoria, Curso
 
@@ -10,6 +10,7 @@ from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
 
 from django.shortcuts import get_object_or_404
+from django.contrib import messages
 
 # Create your views here.
 def index_administracion(request):
@@ -57,6 +58,44 @@ def categorias_eliminar(request,id_categoria):
     categoria.soft_delete()
     return redirect('categorias_index')
 
+
+def cursos_index(request):
+    cursos = Curso.objects.all()
+    return render(request,'administracion/cursos/index.html',{'cursos':cursos})
+
+def cursos_nuevo(request):
+    #forma de resumida de instanciar un formulario basado en model con los
+    #datos recibidos por POST si la petición es por POST o bien vacio(None)
+    #Si la petición es por GET
+    formulario = CursoForm(request.POST or None,request.FILES or None)
+    if formulario.is_valid():
+        formulario.save()
+        messages.success(request,'Se ha creado el curso correctamente')          
+        return redirect('cursos_index')
+    return render(request,'administracion/cursos/nuevo.html',{'formulario':formulario})
+
+
+def cursos_editar(request,id_curso):
+    try:
+        curso = Curso.objects.get(pk=id_curso)
+    except Curso.DoesNotExist:
+        return render(request,'administracion/404_admin.html')
+    formulario = CursoForm(request.POST or None,request.FILES or None,instance=curso)
+    if formulario.is_valid():
+        formulario.save()
+        messages.success(request,'Se ha editado el curso correctamente')          
+        return redirect('cursos_index')
+    return render(request,'administracion/cursos/editar.html',{'formulario':formulario})
+
+def cursos_eliminar(request,id_curso):
+    try:
+        curso = Curso.objects.get(pk=id_curso)
+    except Curso.DoesNotExist:
+        return render(request,'administracion/404_admin.html')
+    messages.success(request,'Se ha eliminado el curso correctamente')          
+    curso.delete()
+    return redirect('cursos_index')
+
 """
     IMPLEMENTACION DE CRUD DE CATEGORIA POR MEDIO DE VISTAS BASADAS EN CLASES (VBC)
 """
@@ -69,17 +108,17 @@ class CategoriaListView(ListView):
 
 class CategoriaCreateView(CreateView):
     model = Categoria
-    fields = ['nombre']
-    # form_class = CategoriaForm
+    # fields = ['nombre']
+    form_class = CategoriaForm
     template_name = 'administracion/categorias/nuevo.html'
-    success_url = reverse_lazy('categorias_index')
+    success_url = reverse_lazy('categorias_index_view')
 
 class CategoriaUpdateView(UpdateView):
     model = Categoria
     fields = ['nombre']
     # form_class = CategoriaForm
     template_name = 'administracion/categorias/editar.html'
-    success_url = reverse_lazy('categorias_index')
+    success_url = reverse_lazy('categorias_index_view')
 
     def get_object(self, queryset=None):
         pk = self.kwargs.get(self.pk_url_kwarg)
@@ -89,7 +128,7 @@ class CategoriaUpdateView(UpdateView):
 class CategoriaDeleteView(DeleteView):
     model = Categoria
     template_name = 'administracion/categorias/eliminar.html'
-    success_url = reverse_lazy('categorias_index')
+    success_url = reverse_lazy('categorias_index_view')
     
     def get_object(self, queryset=None):
         pk = self.kwargs.get(self.pk_url_kwarg)

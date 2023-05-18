@@ -1,0 +1,108 @@
+{% extends '../base_administracion.html' %}
+
+{% block titulo %}Cursos{% endblock%}
+
+{% block contenido %}
+<h1 class="mt-4">Cursos</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item"><a href="{% url 'inicio_administracion' %}">Administracion</a></li>
+    <li class="breadcrumb-item active">Cursos</li>
+</ol>
+
+<div class="card">
+    <div class="card-header">
+        <h3>Filtros</h3>
+    </div>
+    <div class="card-body">
+        <form action="">
+            <div class="row">
+                <div class="col-3">
+                    <div class="md-form mb-0">
+                        <label for="name" class="">Nombre</label>
+                        
+                        <input type="text" 
+                              id="nombre" 
+                              name="nombre"
+                              placeholder="Ingrese el nombre" 
+                              class="form-control">
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="md-form mb-0">
+                        <label for="name" class="">Categoria</label>
+                        
+                        <select name="categoria" id="categoria" class="form-control">
+                            <option value="">Seleccione</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-3 ">
+                    <button class="btn btn-primary mt-4">Buscar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<br>
+<div class="card">
+    <div class="card-body">
+        <a name="" id="" class="btn btn-success" href="{% url 'cursos_nuevo' %}" role="button"> <i class="fa-solid fa-circle-plus"></i> Nuevo</a>
+        <div class='row mt-2'>
+            <div class='col-12'>
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}" role="alert">
+                        {{message}}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <!-- bs5-table-defaul -->
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                    <th>Categoria</th>
+                    <th>Portada</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for curso in cursos %}
+                    <tr>
+                        <td>{{curso.id}}</td>
+                        <td>{{curso.nombre}}</td>
+                        <td>{{curso.categoria.nombre}}</td>
+                        <td>
+                            <img src="{{curso.portada.url}}" alt="{{curso.nombre}}" width="20%">
+                        </td>
+                        <td>
+                            <a href="{% url 'cursos_editar' curso.id %}" title="Editar" class="btn btn-warning"><i class="fas fa-pencil"></i></a>
+                            <a href="{% url 'cursos_eliminar' curso.id %}" title="Eliminar" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="row">
+            <div class="col-12">
+                
+                {% comment %} <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                      <li class="page-item"><a class="page-link" href="#"><<</a></li>
+                      <li class="page-item"><a class="page-link" href="#">1</a></li>
+                      <li class="page-item"><a class="page-link" href="#">2</a></li>
+                      <li class="page-item"><a class="page-link" href="#">3</a></li>
+                      <li class="page-item"><a class="page-link" href="#">>></a></li>
+                    </ul>
+                  </nav> {% endcomment %}
+            </div>
+        </div>
+    </div>
+    <div class="card-footer text-muted">
+        Footer
+    </div>
+</div>
+
+{% endblock %}
+    
