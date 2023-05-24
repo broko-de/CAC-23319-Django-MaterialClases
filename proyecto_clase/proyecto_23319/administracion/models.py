@@ -1,6 +1,7 @@
 from django.db import models
 
 from django.contrib.auth.models import User
+from django.utils.text import slugify 
 
 # Create your models here.
 #Modelo UNICO - SOLUCION 1
@@ -127,3 +128,26 @@ class Perfil(models.Model):
     telefono = models.CharField(max_length=20,verbose_name='Teléfono')
     domicilio = models.CharField(max_length=20,verbose_name='Domicilio')
     foto = models.ImageField(upload_to='perfiles/',null=True,verbose_name='Foto Perfil')
+
+
+
+class Proyecto(models.Model):
+    nombre = models.CharField(max_length=100,verbose_name='Nombre')
+    # campo del tipo slug
+    nombre_slug = models.SlugField(max_length=100,verbose_name='Nombre Slug')
+    anio = models.IntegerField(verbose_name='Año')
+    descripcion = models.TextField(null=True,verbose_name='Descripcion')
+    url = models.URLField(max_length=100,verbose_name='Url')
+    portada = models.ImageField(upload_to='imagenes/proyecto/',null=True,verbose_name='Portada')    
+    estudiante = models.ForeignKey(Estudiante,on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.nombre
+
+    def save(self, *args, **kwargs):
+        self.nombre_slug = slugify(self.nombre)
+        super().save(*args, **kwargs)
+
+    def delete(self,using=None,keep_parents=False):
+        self.portada.storage.delete(self.portada.name) #borrado fisico
+        super().delete()
