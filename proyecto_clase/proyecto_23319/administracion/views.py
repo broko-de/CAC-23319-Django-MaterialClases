@@ -12,7 +12,11 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.contrib import messages
 
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import permission_required
+
 # Create your views here.
+@login_required
 def index_administracion(request):
     variable = 'test variable'
     return render(request,'administracion/index_administracion.html',{'variable':variable})

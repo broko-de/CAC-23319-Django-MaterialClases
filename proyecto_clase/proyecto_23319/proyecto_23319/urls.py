@@ -19,11 +19,11 @@ from django.urls.conf import include
 
 from django.conf.urls.static import static
 from django.conf import settings
-# from administracion.admin import sitio_admin
+from administracion.admin import sitio_admin
 
 urlpatterns = [
     path('adminoriginal/', admin.site.urls),
-    # path('admin/', sitio_admin.urls),
+    path('admin/', sitio_admin.urls),
     path('',include('publica.urls')),
     path('administracion/',include('administracion.urls')),
 

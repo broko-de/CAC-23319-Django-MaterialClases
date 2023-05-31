@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse, JsonResponse
 from django.template import loader
 
@@ -9,6 +9,11 @@ from django.contrib import messages
 
 from django.core.mail import send_mail
 from django.conf import settings
+
+from django.contrib.auth.views import LoginView, LogoutView
+from publica.forms import RegistrarUsuarioForm
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.forms import AuthenticationForm
 
 # Create your views here.
 def index(request):    
@@ -117,6 +122,53 @@ def api_proyectos(request):
 
 def proyectos(request):    
     return render(request,'publica/proyectos.html')
+
+
+"""
+    AUTENTICACION Y REGISTRACION
+"""
+
+def cac_registrarse(request):
+    if request.method == 'POST':
+        form = RegistrarUsuarioForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            email = form.cleaned_data.get('email')
+            messages.success(
+                request, f'Tu cuenta fue creada con éxito! Ya te podes loguear en el sistema.')
+            return redirect('login')
+    else:
+        form = RegistrarUsuarioForm()
+    return render(request, 'publica/registrarse.html', {'form': form, 'title': 'registrese aquí'})
+
+
+def cac_login(request):
+    if request.method == 'POST':
+        # AuthenticationForm_can_also_be_used__
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            nxt = request.GET.get("next", None)
+            if nxt is None:
+                return redirect('inicio')
+            else:
+                return redirect(nxt)
+        else:
+            messages.error(request, f'Cuenta o password incorrecto, realice el login correctamente')
+    form = AuthenticationForm()
+    return render(request, 'publica/login.html', {'form': form, 'title': 'Log in'})
+
+class CacLogoutView(LogoutView):
+    # next_page = 'inicio'
+
+    def dispatch(self, request, *args, **kwargs):
+        response = super().dispatch(request, *args, **kwargs)
+        messages.add_message(request, messages.INFO, 'Se ha cerrado la session correctamente.')
+        return response
+    
 
 #NO USAR
 def hola_mundo(request):

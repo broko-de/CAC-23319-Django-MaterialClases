@@ -159,3 +159,10 @@ EMAIL_HOST_USER = env("EMAIL_HOST_USER")
 # Clave generada desde la configuracion de Google
 EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
 RECIPIENT_ADDRESS = env("RECIPIENT_ADDRESS")
+
+#Modelo User
+AUTH_USER_MODEL = 'administracion.Usuario'
+
+LOGIN_URL ='/cuentas/login'
+
+LOGIN_REDIRECT_URL = "inicio"

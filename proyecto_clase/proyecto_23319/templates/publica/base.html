@@ -38,11 +38,20 @@
                     <li><a href="{% url 'cursos' %}" class="nav-link px-2 link-dark">Cursos y Carreras</a></li>
                     <li><a href="{% url 'proyectos' %}" class="nav-link px-2 link-dark">Proyectos</a></li>
                     <li><a href="{% url 'quienes_somos' %}" class="nav-link px-2 link-dark">Nosotros</a></li>
-                    
+                    {% if perms.administracion %}
+                        <li><a href="{% url 'inicio_administracion' %}" class="nav-link px-2 link-dark">Administración</a></li>
+                    {% endif %}
                 </ul>
                 <div class="col-md-3 text-end">
-                    <a type="button" href="" class="btn btn-outline-primary me-2">Iniciar Sesión</a>
-                    <a type="button" href="" class="btn btn-dark">Registrarse</a>
+                    {% if user.is_authenticated %}
+                        {% comment %} <p>Bienvenido\a, {{ user.username }}.</p> {% endcomment %}
+                        <p type="text" style="display: inline" class="">Bienvenido\a, {{ user.username }}.</p>
+                        <a type="text" style="display: inline" href="{% url 'password_change' %}" class="">Cambiar password</a>
+                        <a type="button" href="{% url 'logout' %}" class="btn btn-outline-primary me-2">Cerrar Sesión</a>
+                    {% else %}
+                        <a type="button" href="{% url 'login' %}" class="btn btn-outline-primary me-2">Iniciar Sesión</a>
+                        <a type="button" href="{% url 'registrarse' %}" class="btn btn-dark">Registrarse</a>
+                    {% endif %}
                 </div>
             </div>
             </div>

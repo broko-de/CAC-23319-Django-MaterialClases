@@ -1,0 +1,27 @@
+{% extends 'publica/base.html' %}
+{% block titulo %}Logout{% endblock titulo %}
+{% block contenido %}
+
+<section class="vh-100 py-5 mt-5" style="background-color: #eee;">
+  <div class="container h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-lg-8 col-xl-8">
+        <div class="card text-black" style="border-radius: 25px;">
+          <div class="card-body p-5">
+            <div class="row justify-content-center">
+              <div class="col-md-8 col-lg-12 col-xl-12 order-2 order-lg-1 text-center p-5">
+                <i class="fa-solid fa-house-lock fa-8x fa-fade"  style="--fa-animation-duration: 2s; --fa-fade-opacity: 0.6;"></i>
+                <p class="text-center h3 fw-bold mb-5 mx-1 mx-md-4 mt-4">Tu sesión se ha cerrado correctamente</p>
+                <p>Gracias por el tiempo que le has dedicado al sitio web hoy.</p>
+                <a href="{% url 'inicio' %}" class="btn btn-primary btn-lg">Volver al inicio</a>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock contenido %}
