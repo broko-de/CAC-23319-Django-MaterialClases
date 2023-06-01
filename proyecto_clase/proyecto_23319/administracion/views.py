@@ -17,7 +17,8 @@ from django.contrib.auth.decorators import permission_required
 
 # Create your views here.
 @login_required
-def index_administracion(request):
+@permission_required('administracion.add_categoria')
+def index_administracion(request):    
     variable = 'test variable'
     return render(request,'administracion/index_administracion.html',{'variable':variable})
 

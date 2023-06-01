@@ -163,6 +163,6 @@ RECIPIENT_ADDRESS = env("RECIPIENT_ADDRESS")
 #Modelo User
 AUTH_USER_MODEL = 'administracion.Usuario'
 
-LOGIN_URL ='/cuentas/login'
+LOGIN_URL ='/accounts/login/'
 
 LOGIN_REDIRECT_URL = "inicio"
