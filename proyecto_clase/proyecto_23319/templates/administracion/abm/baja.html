@@ -1,0 +1,23 @@
+{% extends '../base_administracion.html' %}
+
+{% block titulo %}{{titulo}}{% endblock%}
+
+{% block contenido %}
+<h1 class="mt-4">{{titulo}}</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item"><a href="{% url 'inicio_administracion' %}">Administracion</a></li>
+    <li class="breadcrumb-item active">{{titulo}}</li>
+</ol>
+
+
+<div class="card">
+    <div class="card-header">{{titulo}}</div>
+    <div class="card-body">
+        <form method="post">{% csrf_token %}
+            <p>Esta seguro que quiere eliminar "{{ object.nombre }}"?</p>
+            <input type="submit" value="Confirmar" class="btn btn-danger">
+        </form>
+        
+    </div>
+</div>
+{% endblock %}

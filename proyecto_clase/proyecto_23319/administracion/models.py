@@ -2,6 +2,7 @@ from django.db import models
 
 from django.utils.text import slugify 
 from django.contrib.auth.models import AbstractUser
+from django.urls import reverse_lazy
 
 # Create your models here.
 #Modelo UNICO - SOLUCION 1
@@ -53,6 +54,12 @@ class Estudiante(Persona):
         self.baja=False
         super().save()
     
+    def obtener_baja_url(self):
+        return reverse_lazy('estudiante_baja', args=[self.id])
+
+    def obtener_modificacion_url(self):
+        return reverse_lazy('estudiante_modificacion', args=[self.id])
+    
     class Meta():
         verbose_name_plural = 'Estudiantes'
         # db_table = 'nombre_tabla'
@@ -100,6 +107,13 @@ class Comision(models.Model):
 
     def __str__(self):
         return self.nombre
+
+    def obtener_baja_url(self):
+        return reverse_lazy('comision_baja', args=[self.id])
+
+    def obtener_modificacion_url(self):
+        return reverse_lazy('comision_modificacion', args=[self.id])
+    
 #Modelo que genera tabla intermedia automaticamente
 # class ComisionMTM(models.Model):
 #     nombre = models.CharField(max_length=100,verbose_name="Nombre")
@@ -122,6 +136,12 @@ class Inscripcion(models.Model):
 
     def __str__(self):
         return self.estudiante.nombre
+    
+    def obtener_baja_url(self):
+        return reverse_lazy('inscripcion_baja', args=[self.id])
+
+    def obtener_modificacion_url(self):
+        return reverse_lazy('inscripcion_modificacion', args=[self.id])
     
 class Usuario(AbstractUser):
     pass
@@ -155,3 +175,9 @@ class Proyecto(models.Model):
     def delete(self,using=None,keep_parents=False):
         self.portada.storage.delete(self.portada.name) #borrado fisico
         super().delete()
+
+    def obtener_baja_url(self):
+        return reverse_lazy('proyecto_baja', args=[self.id])
+
+    def obtener_modificacion_url(self):
+        return reverse_lazy('proyecto_modificacion', args=[self.id])

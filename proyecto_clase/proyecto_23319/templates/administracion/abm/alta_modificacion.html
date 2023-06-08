@@ -1,0 +1,34 @@
+{% extends '../base_administracion.html' %}
+
+{% block titulo %} {{titulo}}{% endblock%}
+
+{% block contenido %}
+<h1 class="mt-4">{{titulo}}</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item"><a href="{% url 'inicio_administracion' %}">Administracion</a></li>
+    <li class="breadcrumb-item active">{{titulo}}</li>
+</ol>
+
+
+<div class="card">
+    <div class="card-header">{{titulo}} </div>
+    <div class="card-body">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for campo in form %}
+                <div class="form-group">
+                    <label for="">{{campo.label}}</label>
+                    {{campo}}
+                </div>
+                <div>{{campo.errors}}</div>
+            {% endfor %}
+            <div class="row mt-3">
+                <div class="col-12">
+                    <input type="submit" value="Guardar" class="btn btn-success">
+                    <button class="btn btn-secondary" onclick="javascript:window.history.go(-1);">Cancelar</button>        
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

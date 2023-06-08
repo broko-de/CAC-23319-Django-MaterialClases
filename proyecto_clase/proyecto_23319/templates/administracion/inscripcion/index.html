@@ -1,0 +1,51 @@
+{% extends '../base_administracion.html' %}
+
+{% block titulo %}{{titulo}}{% endblock%}
+
+{% block contenido %}
+<h1 class="mt-4">{{titulo}}</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item"><a href="{% url 'inicio_administracion' %}">Administracion</a></li>
+    <li class="breadcrumb-item active">{{titulo}}</li>
+</ol>
+
+<div class="card">
+    <div class="card-body">
+        <a name="" id="" class="btn btn-success" href="{{url_alta}}" role="button"> <i class="fa-solid fa-circle-plus"></i> Crear </a>
+        <!-- bs5-table-defaul -->
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Fecha Creacion</th>
+                    <th>Estudiante</th>
+                    <th>Comision</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for inscripcion in object_list  %}
+                    <tr>
+                        <td>{{inscripcion.id}}</td>
+                        <td>{{inscripcion.fecha_creacion}}</td>
+                        <td>{{inscripcion.estudiante}}</td>
+                        <td>{{inscripcion.comision}}</td>
+                        <td>{{inscripcion.get_estado_display}}</td>
+                        <td>
+                            <a href="{{inscripcion.obtener_modificacion_url}}" title="Editar" class="btn btn-warning"><i class="fas fa-pencil"></i></a>
+                            <a href="{{inscripcion.obtener_baja_url}}" title="Eliminar" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+    <div class="card-footer text-muted">
+        Footer
+    </div>
+</div>
+
+{% endblock %}
+    
