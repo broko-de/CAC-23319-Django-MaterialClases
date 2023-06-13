@@ -24,6 +24,7 @@ from administracion.admin import sitio_admin
 urlpatterns = [
     path('adminoriginal/', admin.site.urls),
     path('admin/', sitio_admin.urls),
+    path('api_cac/',include('api_cac.urls')),
     path('',include('publica.urls')),
     path('administracion/',include('administracion.urls')),
 
