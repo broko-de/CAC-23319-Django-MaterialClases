@@ -1,0 +1,36 @@
+#version del docker composer que vamos a utilizar
+version: '3.8'
+#especifiamos que servicios queremos que tengan, son los distintos componentes que tiene nuestra aplicacion
+services:
+  # cada servicio podria parecerse un contenedor, pero un servicio puede contener uno o más contenedores de la misma imagen
+  proyecto_23319:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    # indicamos las dependencias entre los servicios
+    depends_on:
+      - mysql-db
+    #podemos indicar el comando principal del contenedor
+    command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    ports:
+      - "8090:8000"
+    #especificamos los volumens del servicio
+    volumes:
+      #quiero que se monte en la ruta actual del proyecto, en el directorio del contenedor, permite que cuando se hagan
+      #cambios en el proyecto, el contendor tome los cambios tambien
+      - .:/proyecto_23319
+  
+  mysql-db:
+    image: mysql
+    #podemos definir variables de entorno
+    environment:
+      - MYSQL_ROOT_PASSWORD=cac2023
+    #exponer los puertos
+    ports:
+      - "33060:3306"
+    volumes:
+      - dbdata:/var/lib/mysql
+
+volumes:
+  dbdata:
+    driver: local
